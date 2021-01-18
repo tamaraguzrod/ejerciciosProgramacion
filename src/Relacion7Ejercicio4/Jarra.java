@@ -53,7 +53,7 @@ public class Jarra {
 
 		// Si son iguales.
 		if (capacidad == cantidad) {
-			throw new JarraException("Error. No se puede llenar porque ya lo está.");
+			throw new JarraException("Error. No se puede llenar porque ya lo estï¿½.");
 		}
 		// Calculo del agua que se consume.
 		aguaConsumida = capacidad - cantidad;
@@ -61,6 +61,7 @@ public class Jarra {
 		// Se acumula en la variable estatica.
 		totalAguaConsumida = totalAguaConsumida + aguaConsumida;
 
+		//Actualiza el agua de la jarra.
 		cantidad = capacidad;
 
 	}
@@ -74,7 +75,7 @@ public class Jarra {
 	public void vaciarLaJarra() throws JarraException {
 
 		if (cantidad == 0) {
-			throw new JarraException("Error. La Jarra ya esta vacía.");
+			throw new JarraException("Error. La Jarra ya esta vacï¿½a.");
 		}
 
 		cantidad = 0;
@@ -91,11 +92,11 @@ public class Jarra {
 		int capacidadSobrante;
 
 		if (otraJarra.capacidad == otraJarra.cantidad) {
-			throw new JarraException("Error. No se puede llenar porque ya lo está.");
+			throw new JarraException("Error. No se puede llenar porque ya lo estï¿½.");
 		}
 
 		if (otraJarra.cantidad == 0) {
-			throw new JarraException("Error. La Jarra ya esta vacía.");
+			throw new JarraException("Error. La Jarra ya esta vacï¿½a.");
 		}
 
 		// Se calcula la cantidad de agua que tiene la otra Jarra.
@@ -107,6 +108,10 @@ public class Jarra {
 			otraJarra.cantidad = otraJarra.cantidad + cantidad;
 			// Si se vuelca por completo, la cantidad de Jarra 1 es cero.
 			capacidad = 0;
+		}
+		else { //La Jarra no se vuelca por completo porque no cabe.
+			cantidad = cantidad - capacidadSobrante;
+			otraJarra.cantidad = otraJarra.capacidad;
 		}
 
 	}

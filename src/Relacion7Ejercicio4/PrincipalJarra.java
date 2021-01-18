@@ -7,29 +7,29 @@ import Relacion6Ejercicio3.Maquina;
 /**
  * Crear una clase Jarra que utilizaremos para simular algunas de las acciones
  * que podemos realizar con una jarra. Cada jarra tiene una determinada
- * capacidad (en litros). Además una jarra dispondrá de una cantidad de agua que
- * podrá ir variando a medida que realicemos operaciones con ellas. Las jarras
- * se crearán siempre vacías. Las acciones que podremos realizar sobre una jarra
+ * capacidad (en litros). Ademï¿½s una jarra dispondrï¿½ de una cantidad de agua que
+ * podrï¿½ ir variando a medida que realicemos operaciones con ellas. Las jarras
+ * se crearï¿½n siempre vacï¿½as. Las acciones que podremos realizar sobre una jarra
  * son: Llenar la jarra por completo desde un grifo. Vaciarla por completo.
  * Volcar el contenido de una jarra en otra. Por ejemplo: Disponemos de dos
  * jarras A y B de capacidades 7 y 4 litros respectivamente. Podemos llenar la
- * jarra A (no podemos echar menos del total de la jarra porque no sabríamos a
- * ciencia cierta cuánta agua tendría). Luego volcar A sobre B (no cabe todo por
- * lo que en A quedan 3 litros y B está llena). Ahora vaciar B. Después volver a
- * volcar A sobre B. En esta situación, A está vacía y B tiene 3 litros. Además
+ * jarra A (no podemos echar menos del total de la jarra porque no sabrï¿½amos a
+ * ciencia cierta cuï¿½nta agua tendrï¿½a). Luego volcar A sobre B (no cabe todo por
+ * lo que en A quedan 3 litros y B estï¿½ llena). Ahora vaciar B. Despuï¿½s volver a
+ * volcar A sobre B. En esta situaciï¿½n, A estï¿½ vacï¿½a y B tiene 3 litros. Ademï¿½s
  * se debe guardar en la clase Jarra el total de agua que se ha consumido
  * llenando objetos Jarra. Realizar un programa que cree dos jarras A y B
- * (solicitando las capacidades por teclado) inicialmente vacías. Después se
- * realizará un menú que permita: 1. Llenar jarra: Se solicitará con la pregunta
- * “¿Qué jarra desea llenar (A/B)?” y se llenará la jarra correspondiente. 2.
- * Vaciar jarra: Se realizará la pregunta “¿Qué jarra desea vaciar (A/ B)?” y se
- * vaciará la jarra correspondiente. 3. Volcar jarra A en B . 4. Volcar jarra B
- * en A. 5. Ver estado de las jarras: Se mostrará la capacidad y el agua que
+ * (solicitando las capacidades por teclado) inicialmente vacï¿½as. Despuï¿½s se
+ * realizarï¿½ un menï¿½ que permita: 1. Llenar jarra: Se solicitarï¿½ con la pregunta
+ * ï¿½ï¿½Quï¿½ jarra desea llenar (A/B)?ï¿½ y se llenarï¿½ la jarra correspondiente. 2.
+ * Vaciar jarra: Se realizarï¿½ la pregunta ï¿½ï¿½Quï¿½ jarra desea vaciar (A/ B)?ï¿½ y se
+ * vaciarï¿½ la jarra correspondiente. 3. Volcar jarra A en B . 4. Volcar jarra B
+ * en A. 5. Ver estado de las jarras: Se mostrarï¿½ la capacidad y el agua que
  * contiene, tanto para la jarra A como para la B. 6. Salir: Cuando salga debe
  * mostrarse un mensaje que indique "El total de agua que se ha gastado llenando
  * jarras es XXX litros".
  * 
- * @author Tamara Guzmán.
+ * @author Tamara Guzmï¿½n.
  *
  */
 
@@ -71,7 +71,7 @@ public class PrincipalJarra {
 	}
 
 	/**
-	 * Metodo que muestra el menú.
+	 * Metodo que muestra el menï¿½.
 	 * 
 	 * @return
 	 */
@@ -93,7 +93,7 @@ public class PrincipalJarra {
 				opcion = Integer.parseInt(teclado.nextLine());
 
 			} catch (NumberFormatException e) {
-				System.out.println("Error. No es un número.");
+				System.out.println("Error. No es un nï¿½mero.");
 			}
 
 		} while (opcion < OPCION_MINIMA || opcion > OPCION_MAXIMA);
@@ -110,7 +110,7 @@ public class PrincipalJarra {
 			case 1:
 
 				do {
-					System.out.print("¿Qué Jarra desea llenar (A ó B)?: ");
+					System.out.print("Â¿Que Jarra desea llenar (A - B)?: ");
 					respuesta = teclado.nextLine().charAt(0);
 					respuesta = Character.toUpperCase(respuesta);
 				} while (!(respuesta == 'A' || respuesta == 'B'));
@@ -125,7 +125,7 @@ public class PrincipalJarra {
 
 			case 2:
 				do {
-					System.out.print("¿Qué Jarra desea vaciar (A ó B)?: ");
+					System.out.print("Â¿Que Jarra desea vaciar (A o B)?: ");
 					respuesta = teclado.nextLine().charAt(0);
 					respuesta = Character.toUpperCase(respuesta);
 				} while (!(respuesta == 'A' || respuesta == 'B'));
