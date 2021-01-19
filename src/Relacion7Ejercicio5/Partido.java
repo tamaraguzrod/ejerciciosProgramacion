@@ -16,17 +16,14 @@ public class Partido {
 	private boolean haJugado;
 
 	// CONSTRUCTOR
-	private Partido(int jornada, Equipo equipoLocal, Equipo equipoVisitante) throws LigaException {
+	public Partido(int jornada, Equipo equipoLocal, Equipo equipoVisitante) throws LigaException {
 		if (jornada < MIN_JORNADA || jornada > MAX_JORNADA) {
 			throw new LigaException(
-					"Error. La Jornada tiene que ser mínimo " + MIN_JORNADA + " y maximo " + MAX_JORNADA);
+					"Error.La Jornada tiene que ser minimo " + MIN_JORNADA + " y maximo " + MAX_JORNADA);
 		}
 		this.jornada = jornada;
 		this.equipoLocal = equipoLocal;
 		this.equipoVisitante = equipoVisitante;
-		this.golesLocal = golesLocal;
-		this.golesVisitante = golesVisitante;
-		setResultadoQuiniela(resultadoQuiniela);
 		this.haJugado = false;
 
 	}
@@ -52,19 +49,26 @@ public class Partido {
 		return equipoVisitante;
 	}
 
+	public void setGolesLocal(int golesLocal) throws LigaException {
+		if (golesLocal < 0) {
+			throw new LigaException("Error. Los goles del equipo local son incorrectos.");
+		}
+		this.golesLocal = golesLocal;
+	}
+
+	public void setGolesVisitante(int golesVisitante) throws LigaException {
+		if (golesVisitante < 0) {
+			throw new LigaException("Error. Los goles del equipo visitante son incorrectos.");
+		}
+		this.golesVisitante = golesVisitante;
+	}
+
 	public boolean isHaJugado() {
 		return haJugado;
 	}
 
 	public char getResultadoQuiniela() {
 		return resultadoQuiniela;
-	}
-
-	public void setResultadoQuiniela(char resultadoQuiniela) throws LigaException {
-		if (!(resultadoQuiniela == '1' || resultadoQuiniela == 'X' || resultadoQuiniela == '2')) {
-			throw new LigaException("Error. Datos de la quiniela incorrectos.");
-		}
-		this.resultadoQuiniela = resultadoQuiniela;
 	}
 
 	/**
@@ -74,13 +78,14 @@ public class Partido {
 		String info;
 
 		if (!this.haJugado) {
-			info = "Partido entre equipo Local " + equipoLocal + " y equipo Visitante " + equipoVisitante
-					+ " todavia no se ha jugado.";
+			info = "Partido entre equipo Local " + equipoLocal.getNombreEquipo() + " y equipo Visitante "
+					+ equipoVisitante.getNombreEquipo() + " todavia no se ha jugado.";
 		} else {
-			info = "Partido entre equipo local " + equipoLocal + " y el equipo Visitante " + equipoVisitante
-					+ "jugado en el estadio " + " de la ciudad" + "ha finalizado con " + golesLocal
-					+ " goles de equipo local y " + golesVisitante + " goles de equipo visitante."
-					+ "Resultado quiniela ";
+			info = "INFORMACION DEL PARTIDO: " + "\nPartido entre equipo local " + equipoLocal.getNombreEquipo()
+					+ " y el equipo visitante " + equipoVisitante.getNombreEquipo() + "\nEn el estadio "
+					+ equipoLocal.getNombreEstadio() + " de la ciudad " + equipoLocal.getCiudad()
+					+ " ha finalizado con " + golesLocal + " goles de equipo local y " + golesVisitante
+					+ " goles de equipo visitante." + "\nResultado quiniela " + resultadoQuiniela;
 		}
 
 		return info;
@@ -88,8 +93,40 @@ public class Partido {
 
 	// METODOS DE LA CLASE
 	public void ponerResultado(String resultado) throws LigaException {
+		int posicionDelGuion, parteGolesLocal, parteGolesVisitante;
+
+		// Se juega el partido.
+		haJugado = true;
+
 		if (resultado.length() == 0) {
 			throw new LigaException("Error. El resultado no puede estar vacio.");
+		}
+
+		// Se busca el guion con indexOf en la cadena resultado.
+		posicionDelGuion = resultado.indexOf('-');
+
+		// Se busca la parte en la cadena resultado de los goles del local.
+		parteGolesLocal = Integer.parseInt(resultado.substring(0, posicionDelGuion));
+		// Lo mismo con la de los goles del visitante.
+		parteGolesVisitante = Integer.parseInt(resultado.substring(posicionDelGuion + 1));
+
+		// Se actualiza los sets de goles de local y visitante.
+		setGolesLocal(parteGolesLocal);
+		setGolesVisitante(parteGolesVisitante);
+
+		// Si ambos equipos empatan.
+		if (golesLocal == golesVisitante) {
+
+			resultadoQuiniela = 'X';
+		} else {
+			// Si gana el equipo local, se incrementan sus partidos ganados.
+			if (golesLocal > golesVisitante) {
+				equipoLocal.incrementarPartidosGanados();
+				resultadoQuiniela = '1';
+			} else {
+				equipoVisitante.incrementarPartidosGanados();
+				resultadoQuiniela = '2';
+			}
 		}
 
 	}

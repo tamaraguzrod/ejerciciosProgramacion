@@ -53,7 +53,7 @@ public class Jarra {
 
 		// Si son iguales.
 		if (capacidad == cantidad) {
-			throw new JarraException("Error. No se puede llenar porque ya lo est�.");
+			throw new JarraException("Error. No se puede llenar porque ya lo esta.");
 		}
 		// Calculo del agua que se consume.
 		aguaConsumida = capacidad - cantidad;
@@ -61,7 +61,7 @@ public class Jarra {
 		// Se acumula en la variable estatica.
 		totalAguaConsumida = totalAguaConsumida + aguaConsumida;
 
-		//Actualiza el agua de la jarra.
+		// Actualiza el agua de la jarra.
 		cantidad = capacidad;
 
 	}
@@ -75,7 +75,7 @@ public class Jarra {
 	public void vaciarLaJarra() throws JarraException {
 
 		if (cantidad == 0) {
-			throw new JarraException("Error. La Jarra ya esta vac�a.");
+			throw new JarraException("Error. La Jarra ya esta vacia.");
 		}
 
 		cantidad = 0;
@@ -89,28 +89,29 @@ public class Jarra {
 	 * @throws JarraException
 	 */
 	public void volcarUnaJarraEnOtra(Jarra otraJarra) throws JarraException {
-		int capacidadSobrante;
+		int cantidadSobrante;
 
+		// Si la Jarra B esta llena.
 		if (otraJarra.capacidad == otraJarra.cantidad) {
-			throw new JarraException("Error. No se puede llenar porque ya lo est�.");
+			throw new JarraException("Error. No se puede llenar porque ya esta llena.");
 		}
 
-		if (otraJarra.cantidad == 0) {
-			throw new JarraException("Error. La Jarra ya esta vac�a.");
+		// Si la Jarra A esta vacia.
+		if (this.cantidad == 0) {
+			throw new JarraException("Error. No puedes volcar la Jarra, porque esta vacia.");
 		}
 
 		// Se calcula la cantidad de agua que tiene la otra Jarra.
-		capacidadSobrante = capacidad - otraJarra.cantidad;
+		cantidadSobrante = capacidad - otraJarra.cantidad;
 
 		// Si la cantidad del la Jarra 1 es menor o igual a la capacidad que sobra en la
 		// otra Jarra.
-		if (cantidad <= capacidadSobrante) {
+		if (cantidad <= cantidadSobrante) {
 			otraJarra.cantidad = otraJarra.cantidad + cantidad;
 			// Si se vuelca por completo, la cantidad de Jarra 1 es cero.
-			capacidad = 0;
-		}
-		else { //La Jarra no se vuelca por completo porque no cabe.
-			cantidad = cantidad - capacidadSobrante;
+			cantidad = 0;
+		} else { // La Jarra no se vuelca por completo porque no cabe.
+			cantidad = cantidad - cantidadSobrante;
 			otraJarra.cantidad = otraJarra.capacidad;
 		}
 
