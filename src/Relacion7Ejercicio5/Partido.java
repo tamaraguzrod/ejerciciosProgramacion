@@ -17,6 +17,10 @@ public class Partido {
 
 	// CONSTRUCTOR
 	public Partido(int jornada, Equipo equipoLocal, Equipo equipoVisitante) throws LigaException {
+		if (equipoLocal.equals(equipoVisitante)) {
+			throw new LigaException("Error. Los equipos deben ser distintos");
+		}
+
 		if (jornada < MIN_JORNADA || jornada > MAX_JORNADA) {
 			throw new LigaException(
 					"Error.La Jornada tiene que ser minimo " + MIN_JORNADA + " y maximo " + MAX_JORNADA);
@@ -29,11 +33,17 @@ public class Partido {
 	}
 
 	// METODOS GETTER Y SETTER
-	public int getGolesLocal() {
+	public int getGolesLocal() throws LigaException {
+		if (golesLocal < 0) {
+			throw new LigaException("Error. Todavia no se ha jugado el partido.");
+		}
 		return golesLocal;
 	}
 
-	public int getGolesVisitante() {
+	public int getGolesVisitante() throws LigaException {
+		if (golesVisitante < 0) {
+			throw new LigaException("Error. Todavia no se ha jugado el partido.");
+		}
 		return golesVisitante;
 	}
 
@@ -77,7 +87,7 @@ public class Partido {
 	public String toString() {
 		String info;
 
-		if (!this.haJugado) {
+		if (!haJugado) {
 			info = "Partido entre equipo Local " + equipoLocal.getNombreEquipo() + " y equipo Visitante "
 					+ equipoVisitante.getNombreEquipo() + " todavia no se ha jugado.";
 		} else {
@@ -97,13 +107,10 @@ public class Partido {
 
 		// Se juega el partido.
 		haJugado = true;
-
-		if (resultado.length() == 0) {
-			throw new LigaException("Error. El resultado no puede estar vacio.");
-		}
-
+		
 		// Se busca el guion con indexOf en la cadena resultado.
 		posicionDelGuion = resultado.indexOf('-');
+		
 
 		// Se busca la parte en la cadena resultado de los goles del local.
 		parteGolesLocal = Integer.parseInt(resultado.substring(0, posicionDelGuion));

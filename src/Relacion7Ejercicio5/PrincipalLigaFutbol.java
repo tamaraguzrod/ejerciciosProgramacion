@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Principal Ejercicio5 Relacion7.
  * 
- * @author Tamara Guzmán.
+ * @author Tamara Guzmï¿½n.
  *
  */
 
@@ -40,12 +40,11 @@ public class PrincipalLigaFutbol {
 		Partido partido1;
 
 		try {
-			// Se solicita la jornada.
-			System.out.print("Introduzca la jornada: ");
-			jornada = Integer.parseInt(teclado.nextLine());
 
+			System.out.println("Introduzca una jornada: ");
+			jornada = Integer.parseInt(teclado.nextLine());
 			// Se crea el partido.
-			partido1 = new Partido(jornada, equipo1, equipo2);
+			partido1 = new Partido(1, equipo1, equipo2);
 
 			// Se pone el resultado del partido.
 			partido1.ponerResultado("2-1");
@@ -71,18 +70,16 @@ public class PrincipalLigaFutbol {
 		Partido partido3;
 
 		try {
-			// Se solicita la jornada.
-			System.out.print("Introduzca la jornada: ");
+
+			System.out.println("Introduzca una jornada: ");
 			jornada = Integer.parseInt(teclado.nextLine());
 			// Se crea el partido.
-			partido2 = new Partido(jornada, equipo2, equipo4);
+			partido2 = new Partido(2, equipo2, equipo4);
 			// Se pone el resultado del partido.
 			partido2.ponerResultado("0-0");
 			System.out.println(partido2);
 
-			System.out.print("Introduzca la jornada: ");
-			jornada = Integer.parseInt(teclado.nextLine());
-			partido3 = new Partido(jornada, equipo1, equipo3);
+			partido3 = new Partido(3, equipo1, equipo3);
 			partido3.ponerResultado("1-2");
 			System.out.println(partido3);
 
