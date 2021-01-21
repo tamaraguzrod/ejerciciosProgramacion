@@ -14,7 +14,7 @@ public class PrincipalPunto {
 
 		// VARIABLES
 		int opcion;
-		double coordenadaX, coordenadaY;
+		double coordenadaX, coordenadaY, coordenadaX2, coordenadaY2;
 		Linea linea1;
 
 		try {
@@ -22,11 +22,15 @@ public class PrincipalPunto {
 			// Se crean los puntos.
 			System.out.println("Introduzca la primera coordenada (X): ");
 			coordenadaX = Double.parseDouble(teclado.nextLine());
-			System.out.println("Introduzca la segunda coordenada (Y): ");
+			System.out.println("Introduzca la primera coordinada (Y): ");
 			coordenadaY = Double.parseDouble(teclado.nextLine());
+			System.out.println("Introduzca la segunda coordenada (X): ");
+			coordenadaX2 = Double.parseDouble(teclado.nextLine());
+			System.out.println("Introduzca la segunda coordenada (Y): ");
+			coordenadaY2 = Double.parseDouble(teclado.nextLine());
 
 			Punto punto1 = new Punto(coordenadaX, coordenadaY);
-			Punto punto2 = new Punto(coordenadaX, coordenadaY);
+			Punto punto2 = new Punto(coordenadaX2, coordenadaY2);
 
 			// Ahora se crea la linea.
 			linea1 = new Linea(punto1, punto2);
@@ -73,26 +77,30 @@ public class PrincipalPunto {
 
 		case 1:
 
-			do {
-				System.out.println("Introduzca hacia donde quiere realizar el movimiento: ");
-				direccion = teclado.nextLine().charAt(0);
-				direccion = Character.toUpperCase(direccion);
-			} while (!(direccion == 'D' || direccion == 'I' || direccion == 'A' || direccion == 'B'));
-			System.out.println("¿Qué cantidad desea mover los puntos?: ");
-			cantidad = Double.parseDouble(teclado.nextLine());
+			try {
+				do {
+					System.out.println("Introduzca hacia donde quiere realizar el movimiento: ");
+					direccion = teclado.nextLine().charAt(0);
+					direccion = Character.toUpperCase(direccion);
+				} while (!(direccion == 'D' || direccion == 'I' || direccion == 'A' || direccion == 'B'));
+				System.out.println("¿Qué cantidad desea mover los puntos?: ");
+				cantidad = Double.parseDouble(teclado.nextLine());
 
-			if (direccion == 'D') {
-				linea1.moverDerecha(cantidad);
-			} else {
-				if (direccion == 'I') {
-					linea1.moverIzquierda(cantidad);
+				if (direccion == 'D') {
+					linea1.moverDerecha(cantidad);
 				} else {
-					if (direccion == 'A') {
-						linea1.moverArriba(cantidad);
+					if (direccion == 'I') {
+						linea1.moverIzquierda(cantidad);
 					} else {
-						linea1.moverAbajo(cantidad);
+						if (direccion == 'A') {
+							linea1.moverArriba(cantidad);
+						} else {
+							linea1.moverAbajo(cantidad);
+						}
 					}
 				}
+			} catch (LineaException e) {
+				System.out.println(e.getMessage());
 			}
 
 			break;

@@ -45,9 +45,14 @@ public class Linea {
 	 * Metodo que realiza el movimiento hacia la derecha.
 	 * 
 	 * @param cantidad
+	 * @throws LineaException 
 	 */
-	public void moverDerecha(double cantidad) { // x
+	public void moverDerecha(double cantidad) throws LineaException { // x
 		double resultadoPunto1, resultadoPunto2;
+		
+		if (cantidad <= 0) {
+			throw new LineaException("Error. La cantidad no puede ser ni negativa ni cero.");
+		}
 
 		// Se suma al get la cantidad de movimiento y se actualiza con set.
 		resultadoPunto1 = punto1.getX() + cantidad;
@@ -62,9 +67,14 @@ public class Linea {
 	 * Metodo que realiza el movimiento hacia la izquierda.
 	 * 
 	 * @param cantidad
+	 * @throws LineaException 
 	 */
-	public void moverIzquierda(double cantidad) {// x
+	public void moverIzquierda(double cantidad) throws LineaException {// x
 		double resultadoPunto1, resultadoPunto2;
+		
+		if (cantidad <= 0) {
+			throw new LineaException("Error. La cantidad no puede ser ni negativa ni cero.");
+		}
 
 		// Se resta al get la cantidad de movimiento y se actualiza con set.
 		resultadoPunto1 = punto1.getX() - cantidad;
@@ -79,9 +89,14 @@ public class Linea {
 	 * Metodo que realiza el movimiento hacia arriba de los puntos.
 	 * 
 	 * @param cantidad
+	 * @throws LineaException 
 	 */
-	public void moverArriba(double cantidad) { // y
+	public void moverArriba(double cantidad) throws LineaException { // y
 		double resultadoPunto1, resultadoPunto2;
+		
+		if (cantidad <= 0) {
+			throw new LineaException("Error. La cantidad no puede ser ni negativa ni cero.");
+		}
 
 		// Se suma al get la cantidad de movimiento y se actualiza con set.
 		resultadoPunto1 = punto1.getY() + cantidad;
@@ -96,9 +111,14 @@ public class Linea {
 	 * Metodo que realiza el movimiento hacia abajo de los puntos.
 	 * 
 	 * @param cantidad
+	 * @throws LineaException 
 	 */
-	public void moverAbajo(double cantidad) { // y
+	public void moverAbajo(double cantidad) throws LineaException { // y
 		double resultadoPunto1, resultadoPunto2;
+		
+		if (cantidad <= 0) {
+			throw new LineaException("Error. La cantidad no puede ser ni negativa ni cero.");
+		}
 
 		// Se resta al get la cantidad de movimiento y se actualiza con set.
 		resultadoPunto1 = punto1.getY() - cantidad;
