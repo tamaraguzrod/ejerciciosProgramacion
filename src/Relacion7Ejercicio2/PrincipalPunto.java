@@ -19,7 +19,7 @@ public class PrincipalPunto {
 
 		try {
 
-			// Primero se crean los puntos.
+			// Se crean los puntos.
 			System.out.println("Introduzca la primera coordenada (X): ");
 			coordenadaX = Double.parseDouble(teclado.nextLine());
 			System.out.println("Introduzca la segunda coordenada (Y): ");
