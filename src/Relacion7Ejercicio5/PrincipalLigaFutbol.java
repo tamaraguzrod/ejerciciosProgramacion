@@ -79,6 +79,8 @@ public class PrincipalLigaFutbol {
 			partido2.ponerResultado("0-0");
 			System.out.println(partido2);
 
+			System.out.println("Introduzca una jornada: ");
+			jornada = Integer.parseInt(teclado.nextLine());
 			partido3 = new Partido(3, equipo1, equipo3);
 			partido3.ponerResultado("1-2");
 			System.out.println(partido3);
