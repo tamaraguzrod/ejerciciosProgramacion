@@ -3,7 +3,7 @@ package Relacion7Ejercicio3;
 public class Categoria {
 
 	//ATRIBUTOS
-	private static final double IVA_MAXIMO = 100;
+	private static final double IVA_MAXIMO = 21;
 	private String nombreCategoria;
 	private double iva;
 	
@@ -27,8 +27,8 @@ public class Categoria {
 	}
 
 	public void setIva(double iva) throws VentaException {
-		if (iva > IVA_MAXIMO) {
-			throw new VentaException("Error. El IVA no puede ser superior a " + IVA_MAXIMO + "%.");
+		if (iva < 0 || iva > IVA_MAXIMO) {
+			throw new VentaException("Error. El IVA no puede ser cero ni superior a " + IVA_MAXIMO + "%.");
 		}
 		this.iva = iva;
 	}

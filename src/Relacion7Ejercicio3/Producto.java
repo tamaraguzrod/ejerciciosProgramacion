@@ -10,7 +10,7 @@ public class Producto {
 	private static int siguienteCodigoADar = 1;
 	
 	//CONSTRUCTOR
-	public Producto(String descripcion, int precioSinIva, Categoria categoria) throws VentaException {
+	public Producto(String descripcion, double precioSinIva, Categoria categoria) throws VentaException {
 		
 		//Esto genera los codigos automaticamente.
 		this.codigo = siguienteCodigoADar;
@@ -57,7 +57,7 @@ public class Producto {
 	public String toString() {
 		String info;
 		
-		info=  "Producto \nCodigo: " + codigo + "\nDescripcion: " + descripcion + "\nPrecio Sin IVA: " + precioSinIva + "€."
+		info=  "Producto \nCodigo: " + codigo + "\nDescripcion: " + descripcion + "\nPrecio Sin IVA: " + precioSinIva + "ï¿½."
 				+ "\nCategoria del Producto: " + categoria;
 		
 		return info;
@@ -69,10 +69,10 @@ public class Producto {
 	 * Metodo que calcula el precio de venta de un producto con su IVA, dependiendo de la categoria.
 	 * @return
 	 */
-	public double calcularPrecioVentaProducto() {
+	public double calcularPrecioConIva() {
 		double precioConIva;
 		
-		 precioConIva = precioSinIva * categoria.getIva();
+		 precioConIva = precioSinIva + (precioSinIva * categoria.getIva())/ 100; 
 		
 		return precioConIva;
 		
